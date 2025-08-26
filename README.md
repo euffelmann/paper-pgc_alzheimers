@@ -1,4 +1,4 @@
-# PGC-ALZ3 Genome-wide association (GWAS) study of Alzheimer's disease (AD)
+# PGC-ALZ3 Genome-wide association study (GWAS) of Alzheimer's disease (AD)
 This repository includes code used to perform analyses and generate plots 
 presented in the manuscript for the PGC-ALZ3 GWAS of AD.
 
