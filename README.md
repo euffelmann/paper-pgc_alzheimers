@@ -13,11 +13,11 @@ multi-ancestry GWAS of Alzheimer's disease.
 
 ```
 .
-├── analysis/       Post-GWAS analyses and figure generation
-├── data/           Scripts to run the GWAS meta-analysis
-├── data_raw/       Scripts to clean raw genotype and summary statistic files
-├── R/              Custom R functions sourced by analysis scripts
-└── src/            Non-R executables (PLINK, METAL, liftOver, LDSC wrappers)
+├── analysis/   
+├── data/       
+├── data_raw/   
+├── R/          
+└── src/        
 ```
 
 ---
@@ -25,17 +25,6 @@ multi-ancestry GWAS of Alzheimer's disease.
 ## analysis/
 
 Post-GWAS analyses. Each subdirectory corresponds to a distinct analysis.
-
-| Subdirectory   | Description |
-|----------------|-------------|
-| `eQTL_coloc/`  | Colocalization of AD GWAS signals with eQTL data |
-| `figures/`     | All manuscript and supplementary figures |
-| `flames/`      | FLAMES gene prioritisation scores for genome-wide significant loci |
-| `lava/`        | Local genetic correlation analysis (LAVA) between AD and other traits |
-| `ldsc/`        | LDSC SNP heritability (h2) and genetic correlation (rg) results |
-| `metasoft/`    | METASOFT RE2 heterogeneity analysis outputs |
-| `pgs/`         | Polygenic score evaluation across cohorts and ancestry groups |
-| `risk_loci/`   | Genome-wide significant locus definitions and gene annotations |
 
 ---
 
