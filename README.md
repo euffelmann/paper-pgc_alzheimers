@@ -33,26 +33,35 @@ Post-GWAS analyses. Each subdirectory corresponds to a distinct analysis.
 | `flames/`      | FLAMES gene prioritisation scores for genome-wide significant loci |
 | `lava/`        | Local genetic correlation analysis (LAVA) between AD and other traits |
 | `ldsc/`        | LDSC SNP heritability (h2) and genetic correlation (rg) results |
+| `magma/`       | MAGMA gene-set enrichment analysis results |
 | `metasoft/`    | METASOFT RE2 heterogeneity analysis outputs |
 | `pgs/`         | Polygenic score evaluation across cohorts and ancestry groups |
 | `risk_loci/`   | Genome-wide significant locus definitions and gene annotations |
 
-Scripts that generate these outputs:
+### Figure generation scripts (`figures/`):
 
 | Script | Description |
 |--------|-------------|
-| `eadb_vs_main.R` | Scatter plots comparing EADB and PGC-ALZ3 p-values |
-| `h2l_curve.R` | h2 on the liability scale as a function of disease prevalence |
-| `h2l_r2l_bar.R` | h2l (LDSC vs. SBayesRC) and incremental PGS R2l bar plots |
-| `lava.R` | Prepares LAVA input, submits jobs, and collects local rg results |
-| `ldsc_munge.R` | Munges summary statistics for LDSC (cohort, meta, and other traits) |
-| `ldsc_h2.R` | Submits LDSC h2 jobs and collects results |
-| `ldsc_rg.R` | Submits LDSC rg jobs and collects results |
-| `manhattan.R` | Manhattan plots for all ancestry × stratum combinations |
-| `pgs_eval.R` | Evaluates PGS R2l and AUC across cohorts and models |
-| `pgs_r2l.R` | Bar plots of incremental PGS R2l |
-| `repro.R` | Reproducibility analysis: EADB and PGC-ALZ2 loci in PGC-ALZ3 |
-| `sex_miami.R` | Miami plots comparing female vs. male meta-analysis results |
+| **Main figures** | |
+| `figure2_manhattan.R` | Circular Manhattan plots showing genome-wide association results |
+| `figure3_celltype.R` | Cell type enrichment analysis bar plots from MAGMA |
+| `figure4_h2l_r2l_points.r` | Combined plot: h2l estimates (LDSC vs SBayesRC) and PGS R2l by cohort type |
+| **Supplementary figures** | |
+| `suppFigure1_stackedBar.R` | Stacked bar charts of effective sample size by ancestry and phenotype |
+| `suppFigure2_manhattan.R` | Manhattan plots for all ancestry × case-control/proxy strata |
+| `suppFigure3_metasoft_vs_metal.R` | Comparison of METAL vs METASOFT p-values at genome-wide significant loci |
+| `suppFigure4_sex_miami.R` | Miami plots comparing male vs female GWAS results |
+| `suppFigure5_proxy_miami.R` | Miami plots comparing case-control vs proxy phenotype results |
+| `suppFigure6_7_heatmap.R` | Heatmaps showing p-values for novel and known loci across ancestries |
+| `suppFigure8_repro.R` | Reproducibility analysis: EADB and PGC-ALZ2 loci replicated in PGC-ALZ3 |
+| `suppFigure9_apoe_effectSize.R` | APOE-e4 effect sizes by ancestry and phenotype definition |
+| `suppFigure10_forest_plot.R` | Forest plots for meta-analysis of genome-wide significant loci |
+| `SuppFigure11_microglia_enrichment.R` | Microglia cell type and functional state enrichment bar plots |
+| `suppFigure12_h2l_curve.R` | SNP heritability on liability scale as a function of disease prevalence |
+| `suppFigure13_pgs_r2l_proxy.R` | Comparison of PGS R2l between proxy and full summary statistics |
+| `suppFigure14_r2l_apoe.R` | Incremental R2l with and without the APOE region |
+| `suppFigure15_pgs_percentile.R` | Case prevalence across PGS percentiles (full vs excluding APOE) |
+| `suppFigure16_effectSize_calibration.R` | Calibration of effect sizes between case-control and proxy phenotypes |
 
 ---
 
