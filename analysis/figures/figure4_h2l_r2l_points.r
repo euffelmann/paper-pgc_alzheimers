@@ -1,4 +1,21 @@
-#### 00. Set-up ####
+# =============================================================
+#
+#  figure4_h2l_r2l_points.R
+#  Two-panel figure combining SNP heritability on the liability
+#  scale (h2l) and incremental R2l from polygenic scores (PGS).
+#
+#  Panel a: h2l estimates from LDSC and SBayesRC across three
+#  ancestry groups (EUR, AFR, EAS), shown as dodged points with
+#  95% CI error bars.
+#
+#  Panel b: Paired points showing incremental R2l (PGS vs.
+#  PC-only baseline) per cohort, split by cohort type (clinical
+#  vs. biobank) and coloured by PGS model (EUR-trained vs.
+#  multi-ancestry).
+#
+# =============================================================
+
+#### 0. Set-up ####
 
 library(dplyr)
 library(ggplot2)
@@ -15,8 +32,9 @@ FIG_H_PANEL  <- 4
 FIG_H_DOUBLE <- 6
 
 
-#### 01. Load and prepare h2l data ####
+#### 1. Load and prepare h2l data ####
 
+# LDSC: keep main case-control analysis for EUR/AFR/EAS
 ldsc_h2 <- fread(here("analysis", "ldsc", "ldsc_h2.txt")) %>%
   filter(
     proxy_casec == "case_control",
@@ -26,6 +44,8 @@ ldsc_h2 <- fread(here("analysis", "ldsc", "ldsc_h2.txt")) %>%
   mutate(method = "ldsc") %>%
   select(anc, h2, h2_se, method)
 
+# SBayesRC: neff0.6 datasets correspond to sample size filtering
+# used in the main analysis; hsq is the heritability parameter
 sbay_h2 <- read.xlsx(
   here("analysis", "sbayesrc", "h2_estimates_8Apr2026.xlsx"),
   sheet = "8Apr2026"
