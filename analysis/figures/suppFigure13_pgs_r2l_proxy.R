@@ -34,7 +34,7 @@ pgs_models <- c(
 )
 
 # Load PGS performance when trained on proxy phenotype data only
-pgs_eval_proxy <- readRDS("analysis/pgs/proxy_prediction/proxy_pgs_eval.rds")[["sbayesrc"]] %>%
+pgs_eval_proxy <- readRDS(here("analysis/pgs/proxy_prediction/proxy_pgs_eval.rds"))[["sbayesrc"]] %>%
   filter(model != "APOE + PGS + sex" & model != "APOE + PGS") %>%  # Remove complex models
   group_by(cohort) %>%
   mutate(
@@ -47,7 +47,7 @@ pgs_eval_proxy <- readRDS("analysis/pgs/proxy_prediction/proxy_pgs_eval.rds")[["
   select(cohort, r2l_delta, sst)
 
 # Load PGS performance when trained on full data (proxy + case-control)
-pgs_eval_full <- readRDS("analysis/pgs/pgs_eval.rds")[["sbayesrc_mult"]] %>%
+pgs_eval_full <- readRDS(here("analysis/pgs/pgs_eval.rds"))[["sbayesrc_mult"]] %>%
   group_by(cohort) %>%
   mutate(
     r2l_base = r2l[model == "PC[1-10]"],  # Baseline R2 (PCs only)
@@ -109,7 +109,7 @@ p1 <- pgs_eval %>%
 
 ggsave(
   plot = p1,
-  filename = paste0("analysis/figures/sbayesrc_r2l_increment_proxy.png"),
+  filename = here("analysis/figures/sbayesrc_r2l_increment_proxy.png"),
   device = "png",
   width = 8,
   height = 4

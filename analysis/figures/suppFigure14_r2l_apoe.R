@@ -64,14 +64,16 @@ prs_r2liab_to_r2obs <- function(K, P, prs_r2liab) {
 
 #### 1. Download input data from DNAnexus ####
 
+DNX_DIR <- "Dougs_data:/PGCALZ3/PGCALZ3_PRS/2026_04_10_pgsAnalysis_emil"
+
 # Download phenotype/covariate files
-system("dx download -r Dougs_data:/PGCALZ3/PGCALZ3_PRS/2026_04_10_pgsAnalysis_emil/testing_samples -o .")
+system(paste0("dx download -r ", DNX_DIR, "/testing_samples -o ."))
 
 # Download PGS score files (with and without APOE region)
-system("dx download -r Dougs_data:/PGCALZ3/PGCALZ3_PRS/2026_04_10_pgsAnalysis_emil/plink_scores -o .")
+system(paste0("dx download -r ", DNX_DIR, "/plink_scores -o ."))
 
 # Download existing PGS evaluation results
-system("dx download -r Dougs_data:/PGCALZ3/PGCALZ3_PRS/2026_04_10_pgsAnalysis_emil/pgs_eval.rds -o .")
+system(paste0("dx download -r ", DNX_DIR, "/pgs_eval.rds -o ."))
 
 
 #### 2. Evaluate PGS excluding APOE region ####
@@ -264,4 +266,4 @@ ggsave(
   type = "cairo"
 )
 
-system("dx upload supFig_r2l_apoe.png --path Dougs_data:/PGCALZ3/PGCALZ3_PRS/2026_04_10_pgsAnalysis_emil/")
+system(paste0("dx upload supFig_r2l_apoe.png --path ", DNX_DIR, "/"))

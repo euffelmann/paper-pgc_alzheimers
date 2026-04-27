@@ -25,7 +25,7 @@ source(here("R/h2l_h2o.R"))  # Functions for converting h2 between observed and 
 
 ## LDSC heritability estimates
 # Load LDSC results and extract h2 for European ancestry
-ldsc_h2 <- fread("analysis/ldsc/ldsc_h2.txt")
+ldsc_h2 <- fread(here("analysis/ldsc/ldsc_h2.txt"))
 ldsc_h2l <- ldsc_h2 %>%
   filter(
     proxy_casec == "combined",
