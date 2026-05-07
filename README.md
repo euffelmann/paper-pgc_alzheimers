@@ -37,6 +37,7 @@ Post-GWAS analyses. Each subdirectory corresponds to a distinct analysis.
 | `metasoft/`    | METASOFT RE2 heterogeneity analysis outputs |
 | `pgs/`         | Polygenic score evaluation across cohorts and ancestry groups |
 | `risk_loci/`   | Genome-wide significant locus definitions and gene annotations |
+| `sbayesrc/`    | SBayesRC SNP heritability estimation on the liability scale |
 
 ### Figure generation scripts (`figures/`):
 

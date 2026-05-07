@@ -1,0 +1,75 @@
+
+
+## Pipeline to run SBayesRC
+
+## Make LD matrix
+bdata=ukbEUR_qced
+chunk=ref2cM_v37.pos
+ldm=ukbEUR_qced
+
+gctb --bfile $bdata --make-block-ldm --block {TASK_ID} --block-info $chunk --out $ldm --thread 4
+
+## Path to files
+filename=main_case_control_eur_neff0.6_nsumstats1.txt
+raw=${filename}.txt
+gwas=${filename}_lia
+annot=annot_merged_snps.txt
+apoe=rs429358.snplist
+
+## Get liability scale summary statistics
+Rscript get_liability_ma_refAF.R $raw $ldm/snp.info $gwas.ma
+
+===============================================
+======== R code in get_liability_ma_refAF.R ===
+library(data.table)
+args <- commandArgs(trailingOnly = TRUE)
+infile = args[1]
+reffile = args[2]
+outfile = args[3]
+dat = fread(file=infile,header=T)
+ma = subset(dat, select=c("rsid","effect_allele","other_allele","effect_allele_frequency","beta","standard_error","p_value"))
+ref = fread(file=reffile,header=T)
+
+# Match rsid in ma with ID in ref
+idx <- match(ma$rsid, ref$ID)
+
+# Update effect allele frequency where matched
+ma$effect_allele_frequency[!is.na(idx)] <- ref$A1Freq[idx[!is.na(idx)]]
+
+# map logistic regression estimates to liability scale
+K = 0.05
+z = dnorm(qnorm(K))
+ma$beta = ma$beta * K * (1-K) / z
+ma$standard_error = ma$standard_error * K * (1-K) / z
+f = ma$effect_allele_frequency
+varx = 2*f*(1-f) 
+ma$n_liability = (1 - varx * ma$beta^2) / (ma$standard_error^2 * varx)
+
+write.table(ma, file=outfile, quote=F, row.names=F)
+======= End of R code in get_liability_ma_refAF.R ===
+=====================================================
+
+## Impute sumstats for SNPs not in LD reference or SNPs with outlier per-SNP sample size
+gctb --ldm-eigen $ldm --gwas-summary $gwas.ma --impute-summary --keep-sumstat-intact $apoe --out $gwas --thread 8 > $gwas.imputed.log 2>&1
+
+## Run SBayesRC with APOE variant as fixed effects and SNPs in LE with the APOE variant as random effects
+skip=APOE_block_except_rs429358_eur.snplist
+out=${gwas}_rc_multichain_xblk
+
+gctb \
+--sbayes RC \
+--gwas-summary $gwas.imputed.ma \
+--annot $annot \
+--ldm-eigen $ldm \
+--ldm-eigen-cutoff 0.995 \
+--skip $skip \
+--recompute-eigen \
+--fixed-effect $apoe \
+--num-chains 4 \
+--chain-length 5000 \
+--burn-in 3000 \
+--n-dist-auto \
+--thread 48 \
+--out $out > $out.log 2>&1
+
+

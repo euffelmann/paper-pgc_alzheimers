@@ -73,3 +73,10 @@ risk_loci/
   sex_miami.R, repro.R, and lava.R.
   Risk loci are identified using riskloc() (R/riskloc.R), which clusters
   significant variants into independent loci using ±250 kb windows.
+
+sbayesrc/
+  SBayesRC SNP heritability estimation on the liability scale for the
+  EUR ancestry meta-analysis. Builds a block LD matrix from UK Biobank
+  EUR genotypes, converts logistic-regression summary statistics to the
+  liability scale, and runs SBayesRC with annotation-informed priors
+  treating the APOE lead variant (rs429358) as a fixed effect.
