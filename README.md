@@ -4,7 +4,7 @@ This repository contains all code used to process genotype data, run
 the meta-analysis, and perform post-GWAS analyses for the PGC-ALZ3
 multi-ancestry GWAS of Alzheimer's disease.
 
-**Paper:** [URL will be added upon publication]  
+**Paper:** https://www.medrxiv.org/content/10.1101/2025.10.10.25337470v2  
 **Summary statistics:** [URL will be added upon acceptance]
 
 ---
