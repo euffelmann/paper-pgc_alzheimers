@@ -5,7 +5,7 @@ the meta-analysis, and perform post-GWAS analyses for the PGC-ALZ3
 multi-ancestry GWAS of Alzheimer's disease.
 
 **Paper:** https://www.medrxiv.org/content/10.1101/2025.10.10.25337470v2  
-**Summary statistics:** https://vu.data.surf.nl/s/EmXnRCAyeNie6Wb\
+**Summary statistics:** https://vu.data.surf.nl/s/EmXnRCAyeNie6Wb  
 Use "Uffelmann_2026" to access the files
 
 **Reference:** Uffelmann, E., Wightman, D. P., Bahrami, S., Shadrin, A. A., Fominykh, V., Ojima, T., Jiang, C., Benner, C., Moreno, E., Campos, A. I., Thomassen, J. Q., Minois-Genin, E., Wu, H. M., Walters, G. B., Sherva, R., Lin, T., Wang, X., Bryois, J., Krebs, K., … Posthuma, D. (2026). Genomic analyses reveal new insights into Alzheimer’s disease (p. 2025.10.10.25337470). medRxiv.
