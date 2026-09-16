@@ -17,6 +17,16 @@ library(data.table)
 library(ggplot2)
 library(svglite)
 
+# Build "y=a+b*x\nR2=r" annotation label from a fitted lm
+lm_label <- function(m) {
+  intercept <- coef(m)[1]
+  slope <- coef(m)[2]
+  r2 <- summary(m)$r.squared
+  paste0("y=", format(signif(intercept, 2), scientific = FALSE),
+         ifelse(slope < 0, "-", "+"), format(round(abs(slope), 3), nsmall = 3), "*x",
+         "\nR2=", format(round(r2, 4), nsmall = 4))
+}
+
 #### 1. Load and prepare effect size data ####
 
 # Read supplementary data table containing lead SNP effect sizes
@@ -51,7 +61,7 @@ p <- ggplot(data = a, aes(x = ccbeta, y = proxybeta)) +
   theme(axis.text.x = element_text(vjust = 1, size = 9, hjust = 1, color = "black", angle = 45)) +
   theme(axis.text.y = element_text(vjust = 1, size = 9, hjust = 1, color = "black")) +
   geom_smooth(method = "lm") +  # Add linear regression line
-  annotate("text", x = -0.75, y = 0.4, label = "y=-0.00061+1.069*x\nR2=0.96")
+  annotate("text", x = -0.75, y = 0.4, label = lm_label(m))
 ggsave("casecontrolvsproxybeta.png", p)
 
 #### 4. Repeat analysis excluding APOE locus ####
@@ -78,5 +88,5 @@ p <- ggplot(data = a, aes(x = ccbeta, y = proxybeta)) +
   theme(axis.text.x = element_text(vjust = 1, size = 9, hjust = 1, color = "black", angle = 45)) +
   theme(axis.text.y = element_text(vjust = 1, size = 9, hjust = 1, color = "black")) +
   geom_smooth(method = "lm") +
-  annotate("text", x = 0, y = 0.4, label = "y=-0.00043+1.049*x\nR2=0.8927")
+  annotate("text", x = 0, y = 0.4, label = lm_label(m))
 ggsave("casecontrolvsproxybetanoAPOE.png", p)
