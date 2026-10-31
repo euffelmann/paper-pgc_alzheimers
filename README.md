@@ -3,9 +3,8 @@
 This repository contains all code used to process genotype data, run
 the meta-analysis, and perform post-GWAS analyses for the PGC-ALZ3
 multi-ancestry GWAS of Alzheimer's disease.
-
-**Paper:** https://www.nature.com/articles/s41586-026-11206-y 
-**Summary statistics:** https://cncr.nl/research/summary_statistics/ 
+**Paper:** https://www.nature.com/articles/s41586-026-11206-y<br>
+**Summary statistics:** https://cncr.nl/research/summary_statistics/
 
 **Reference:** Uffelmann, E. et al. Alzheimer’s disease genetics converges on microglial and neuronal dysregulation. Nature 1–12 (2026)
 
